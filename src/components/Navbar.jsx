@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ks_logo_single from "../assets/images/ks_logo_single.png";
+import { Input } from "@material-tailwind/react";
+import { FaSearch } from "react-icons/fa";
+
 import {
   Link,
   Outlet,
@@ -39,6 +42,10 @@ export default function Navbar() {
       company_id: Cookies.get("company_id"),
     });
 
+    // if (user.company_name !== company_name) {
+    //     navigate('/login')
+    // }
+
     const handleResize = () => {
       const width = window.innerWidth;
       setDisplaySideBar(width);
@@ -63,23 +70,31 @@ export default function Navbar() {
                 alt="Kokoh Semesta"
                 className="w-[40px] md:w-[50px] mx-3 my-4"
               />
-              <h1 className="hidden md:block text-[24px] font-extrabold text-gray-800">
+              <h1 className="hidden md:block text-[24px] font-extrabold text-blue-900">
                 INVENTORY MANAGEMENT SYSTEM
               </h1>
               <h1 className="text-[14px] md:text-[24px] font-extrabold text-gray-800"></h1>
             </div>
-            <div className="flex">
-              <div
-                onClick={() => {
-                  setSideBar(!sideBarShow);
-                }}
-                className="w-12 flex flex-col gap-1 p-2 hover:bg-neutral-400/30 hover:cursor-pointer"
-              >
-                <div className="w-full h-1 bg-black/60 rounded"></div>
-                <div className="w-full h-1 bg-black/60 rounded"></div>
-                <div className="w-full h-1 bg-black/60 rounded"></div>
+
+            <div className="flex items-center justify-between w-[30%]">
+              <div className="w-3/4">
+                <Input icon={<FaSearch />} label="search" type="text" />
+              </div>
+
+              <div className="flex">
+                <div
+                  onClick={() => {
+                    setSideBar(!sideBarShow);
+                  }}
+                  className="w-12 flex flex-col gap-1 p-2 hover:bg-neutral-400/30 hover:cursor-pointer"
+                >
+                  <div className="w-full h-1 bg-black/60 rounded"></div>
+                  <div className="w-full h-1 bg-black/60 rounded"></div>
+                  <div className="w-full h-1 bg-black/60 rounded"></div>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -90,7 +105,7 @@ export default function Navbar() {
           }`}
         >
           <div className="w-[90%] md:w-[85%] min-h-screen py-5">
-            <Outlet {...user} />
+            <Outlet context={user}/>
           </div>
 
           <div
@@ -105,7 +120,7 @@ export default function Navbar() {
           <div
             className={`fixed left-0 bg-white border-r h-screen w-[240px] ${
               sideBarShow ? "translate-x-0" : "-translate-x-full"
-            } md:w-[320px] bottom-0 py-4 pr-4 shadow transition-all duration-500 z-30`}
+            } md:w-[320px] bottom-0 py-4 shadow transition-all duration-500 z-30`}
           >
             <div className="flex flex-col w-full gap-2 text-[#3C4043] font-semibold">
               <div
@@ -136,7 +151,7 @@ export default function Navbar() {
                       location.pathname === `/${user.company_name}`
                         ? "border-[#2E3192] bg-[#2E3192]/20"
                         : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                    } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    } p-3 px-5 duration-100 hover:cursor-pointer`}
                     onClick={() => {
                       navigate(`/${user.company_name}`);
                     }}
@@ -145,12 +160,12 @@ export default function Navbar() {
                   </div>
                   <div
                     className={`flex w-full items-center gap-2 border ${
-                      location.pathname === "/assets"
+                      location.pathname === `/${user.company_name}/assets`
                         ? "border-[#2E3192] bg-[#2E3192]/20"
                         : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                    } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    } p-3 px-5 duration-100 hover:cursor-pointer`}
                     onClick={() => {
-                      navigate("/assets");
+                      navigate(`/${user.company_name}/assets`);
                     }}
                   >
                     Assets List
@@ -160,7 +175,7 @@ export default function Navbar() {
                       location.pathname === "/receive"
                         ? "border-[#2E3192] bg-[#2E3192]/20"
                         : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                    } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    } p-3 px-5 duration-100 hover:cursor-pointer`}
                     onClick={() => {
                       navigate("/receive");
                     }}
@@ -172,7 +187,7 @@ export default function Navbar() {
                       location.pathname === "/issued"
                         ? "border-[#2E3192] bg-[#2E3192]/20"
                         : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                    } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    } p-3 px-5 duration-100 hover:cursor-pointer`}
                     onClick={() => {
                       navigate("/issued");
                     }}
@@ -184,7 +199,7 @@ export default function Navbar() {
                       location.pathname === "/transaction"
                         ? "border-[#2E3192] bg-[#2E3192]/20"
                         : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                    } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    } p-3 px-5 duration-100 hover:cursor-pointer`}
                     onClick={() => {
                       navigate("/transaction");
                     }}
@@ -196,7 +211,7 @@ export default function Navbar() {
                       location.pathname === "/history"
                         ? "border-[#2E3192] bg-[#2E3192]/20"
                         : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                    } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    } p-3 px-5 duration-100 hover:cursor-pointer`}
                     onClick={() => {
                       navigate("/history");
                     }}
@@ -209,7 +224,7 @@ export default function Navbar() {
                         location.pathname === "/panel"
                           ? "border-[#2E3192] bg-[#2E3192]/20"
                           : "hover:border-[#2E3192] hover:bg-[#2E3192]/20"
-                      } rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                      } p-3 px-5 duration-100 hover:cursor-pointer`}
                       onClick={() => {
                         navigate("/panel");
                       }}
@@ -233,7 +248,7 @@ export default function Navbar() {
                     onClick={() => {
                       navigate("/login");
                     }}
-                    className={`flex w-full items-center gap-2 border hover:border-[#2E3192] hover:bg-[#2E3192]/20 rounded-e-full p-3 px-5 duration-100 hover:cursor-pointer`}
+                    className={`flex w-full items-center gap-2 border hover:border-[#2E3192] hover:bg-[#2E3192]/20  p-3 px-5 duration-100 hover:cursor-pointer`}
                   >
                     Log Out
                   </div>
