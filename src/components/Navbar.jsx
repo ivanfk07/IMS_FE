@@ -78,7 +78,12 @@ export default function Navbar() {
 
             <div className="flex items-center justify-between w-[30%]">
               <div className="w-3/4">
-                <Input icon={<FaSearch />} label="search" type="text" />
+                <Input
+                  icon={<FaSearch />}
+                  label="search"
+                  type="text"
+                  color="indigo"
+                />
               </div>
 
               <div className="flex">
@@ -94,7 +99,6 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -105,7 +109,7 @@ export default function Navbar() {
           }`}
         >
           <div className="w-[90%] md:w-[85%] min-h-screen py-5">
-            <Outlet context={user}/>
+            <Outlet context={user} />
           </div>
 
           <div
