@@ -276,7 +276,7 @@ export default function Navbar() {
         {/* FOOTER */}
         <div className="w-full mt-12 flex flex-col items-center justify-center h-[200px] border-t">
           <h1 className="text-[8px] md:text-[12px] text-center font-semibold text-black">
-            Copyright © 2023 Syikha Creative Production. All Right Reserved
+            Copyright © 2023 Ivan Kurniawan. All Right Reserved
           </h1>
         </div>
       </div>
