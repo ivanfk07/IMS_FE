@@ -76,7 +76,7 @@ export default function Navbar() {
               <h1 className="text-[14px] md:text-[24px] font-extrabold text-gray-800"></h1>
             </div>
 
-            <div className="flex items-center justify-between w-[30%]">
+            <div className="flex items-center justify-evenly w-[30%]">
               <div className="w-3/4">
                 <Input
                   icon={<FaSearch />}
